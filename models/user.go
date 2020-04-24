@@ -3,8 +3,6 @@ package models
 import (
 	"fmt"
 
-	"github.com/astaxie/beego"
-
 	"github.com/astaxie/beego/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
 )
@@ -58,10 +56,11 @@ func init() {
 func QueryUser() (user User) {
 	o := orm.NewOrm()
 	user = User{Id: 1}
-	err := o.Read(&user)
-	if err != nil {
-		beego.Info(err)
-	}
+	_ = o.Read(&user)
+	//err := o.Read(&user)
+	//if err != nil {
+	//	beego(err)
+	//}
 	return
 }
 
@@ -77,9 +76,9 @@ func QueryUserDetail(user User) (detailList []string) {
 	return
 }
 
-func QueryUserSkill(user User) (userskills []UserSkillSearchResult) {
+func QueryUserSkill(user User) (userSkills []UserSkillSearchResult) {
 	o := orm.NewOrm()
-	num, _ := o.Raw("SELECT skill_name,rate_percent,rate_number,process FROM `user_skill` INNER JOIN skill on user_skill.id = skill.id INNER JOIN rate on user_skill.rate_id=rate.id where user_id=?", user.Id).QueryRows(&userskills)
+	num, _ := o.Raw("SELECT skill_name,rate_percent,rate_number,process FROM `user_skill` INNER JOIN skill on user_skill.id = skill.id INNER JOIN rate on user_skill.rate_id=rate.id where user_id=?", user.Id).QueryRows(&userSkills)
 	fmt.Println(num)
 	return
 }

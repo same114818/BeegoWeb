@@ -20,9 +20,6 @@ func (c *IndexController) URLMapping() {
 
 // @router / [get]
 func (c *IndexController) GetIndex() {
-	// c.Data["Website"] = "beego.me"
-	// c.Data["Email"] = "astaxie@gmail.com"
-
 	c.TplName = "index.html"
 }
 

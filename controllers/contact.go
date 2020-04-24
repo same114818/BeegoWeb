@@ -32,16 +32,5 @@ func (c *ContactController) SendMessage() {
 		jsonBytes, _ := json.Marshal(contact)
 		c.Data["json"] = string(jsonBytes)
 	}
-
-	// &models.Contact{
-	// 	Name:    name,
-	// 	Email:   email,
-	// 	Subject: subject,
-	// 	Message: message,
-	// }
-
-	// jsonBytes, _ := json.Marshal(contact)
-	// c.Data["json"] = string(jsonBytes)
-	//c.TplName = "contact.html"
 	c.ServeJSON()
 }
